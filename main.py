@@ -48,6 +48,18 @@ class Desk:
         if e == 'Left':
             self.Left()
 
+    def Up(self):
+        pass
+
+    def Down(self):
+        pass
+
+    def Right(self):
+        pass
+
+    def Left(self):
+        pass
+
 
     def check_color(self, i):
         if canvas.itemcget(self.texts[i], 'text') == '3':
