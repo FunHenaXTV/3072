@@ -20,7 +20,7 @@ class Desk:
             for x in range(2, 502, 125):
                 self.points = [x, y, x, y+125, x+125, y+125, x+125, y]
                 self.objects[i][j] = (canvas.create_polygon(self.points, outline="#bbb09e", fill="#bbb09e"))
-                self.texts[i][j] = (canvas.create_text(62.5+x, 62.5+y, text=str(i)+str(j), font=30))
+                self.texts[i][j] = (canvas.create_text(62.5+x, 62.5+y, text='', font=30))
                 i += 1
             j += 1
             i = 0
@@ -59,18 +59,91 @@ class Desk:
             self.Left()
 
     def Up(self):
-        for i in range(4, 16):
-            if canvas.itemcget(self.texts[i], 'text') != '':
-                pass
-
+        for i in range(0, 4):
+            for j in range(1, 4):
+                if canvas.itemcget(self.texts[i][j], 'text') != '':
+                    if canvas.itemcget(self.texts[i][0], 'text') == '':
+                        canvas.itemconfig(self.texts[i][0], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(i, 0)
+                    elif canvas.itemcget(self.texts[i][1], 'text') == '':
+                        canvas.itemconfig(self.texts[i][1], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(i, 1)
+                    elif canvas.itemcget(self.texts[i][2], 'text') == '':
+                        canvas.itemconfig(self.texts[i][2], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(i, 2)
+                    elif canvas.itemcget(self.texts[i][3], 'text') == '':
+                        canvas.itemconfig(self.texts[i][3], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(i, 3)
+                    self.check_color(i, j)
     def Down(self):
-        pass
+        for i in range(0, 4):
+            for j in range(2, -1, -1):
+                if canvas.itemcget(self.texts[i][j], 'text') != '':
+                    if canvas.itemcget(self.texts[i][3], 'text') == '':
+                        canvas.itemconfig(self.texts[i][3], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(i, 3)
+                    elif canvas.itemcget(self.texts[i][2], 'text') == '':
+                        canvas.itemconfig(self.texts[i][2], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(i, 2)
+                    elif canvas.itemcget(self.texts[i][1], 'text') == '':
+                        canvas.itemconfig(self.texts[i][1], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(i, 1)
+                    elif canvas.itemcget(self.texts[i][0], 'text') == '':
+                        canvas.itemconfig(self.texts[i][0], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(i, 0)
+                    self.check_color(i, j)
 
     def Right(self):
-        pass
+        for i in range(2, -1, -1):
+            for j in range(0, 4):
+                if canvas.itemcget(self.texts[i][j], 'text') != '':
+                    if canvas.itemcget(self.texts[3][j], 'text') == '':
+                        canvas.itemconfig(self.texts[3][j], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(3, j)
+                    elif canvas.itemcget(self.texts[2][j], 'text') == '':
+                        canvas.itemconfig(self.texts[2][j], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(2, j)
+                    elif canvas.itemcget(self.texts[1][j], 'text') == '':
+                        canvas.itemconfig(self.texts[1][j], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(1, j)
+                    elif canvas.itemcget(self.texts[0][j], 'text') == '':
+                        canvas.itemconfig(self.texts[0][j], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(0, j)
+                    self.check_color(i, j)
 
     def Left(self):
-        pass
+        for i in range(1, 4):
+            for j in range(0, 4):
+                if canvas.itemcget(self.texts[i][j], 'text') != '':
+                    if canvas.itemcget(self.texts[0][j], 'text') == '':
+                        canvas.itemconfig(self.texts[0][j], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(0, j)
+                    elif canvas.itemcget(self.texts[1][j], 'text') == '':
+                        canvas.itemconfig(self.texts[1][j], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(1, j)
+                    elif canvas.itemcget(self.texts[2][j], 'text') == '':
+                        canvas.itemconfig(self.texts[2][j], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(2, j)
+                    elif canvas.itemcget(self.texts[3][j], 'text') == '':
+                        canvas.itemconfig(self.texts[3][j], text=canvas.itemcget(self.texts[i][j], 'text'))
+                        canvas.itemconfig(self.texts[i][j], text='')
+                        self.check_color(3, j)
+                    self.check_color(i, j)
 
 
     def check_color(self, i, j):
